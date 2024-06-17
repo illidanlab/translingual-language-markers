@@ -40,6 +40,8 @@ def extract_features(y_train, y_test, lan_train, lan_test, x_train, x_test, mmse
     return feature_train, mmse_train_filtered, feature_test, mmse_test_filtered, lan_detected_test_filtered
 
 def train(features, mmse, dx, cfg_proj, lan_detected, tkdname, mode = 0):
+    # mode = 1 means finding bad subjects; otherwise, just train normally.
+
     f1, spec, sens, acc, rmse, r2 = [], [], [], [], [], []
     pbar = tqdm(total = cfg_proj.iteration)
     freq = {}

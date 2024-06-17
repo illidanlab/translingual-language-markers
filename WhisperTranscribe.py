@@ -6,18 +6,15 @@ import whisper
 import torch
 import argparse
 
-parser = argparse.ArgumentParser()  
-parser.add_argument("--path_root", type=str, default="/localscratch2/hoangbao/TAUKADIAL-24", required=False)
-args = parser.parse_args()
-
+path_root = "TAUKADIAL-24"
 model_id = "large"
 use_cuda = torch.cuda.is_available()
 device = torch.device("cuda" if use_cuda else "cpu")
 whisper_model = whisper.load_model(model_id, device = device)
 
 for mode in ["test"]:
-    paths_wav = sorted(glob.glob(os.path.join(args.path_root, f"{mode}/*.wav")))
-    paths_csv = os.path.join(args.path_root, f"{mode}/groundtruth.csv")
+    paths_wav = sorted(glob.glob(os.path.join(path_root, f"{mode}/*.wav")))
+    paths_csv = os.path.join(path_root, f"{mode}/groundtruth.csv")
     
     if mode == "test":
         df = pd.read_csv(paths_csv, sep = ";")
@@ -30,7 +27,7 @@ for mode in ["test"]:
     wav_name_list = list(df["tkdname"])
     pbar = tqdm(total = len(wav_name_list))
     for name_wav in wav_name_list:
-        path_wav = os.path.join(args.path_root, mode, name_wav)
+        path_wav = os.path.join(path_root, mode, name_wav)
 
         result = whisper_model.transcribe(path_wav)
 

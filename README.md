@@ -11,7 +11,7 @@ Our proposed framework combines the power from
 2) careful treatment of model complexity for small sample size;
 3) consideration of imbalanced demographic structure, potential outlier removal, and a multi-task treatment that uses the prediction of clinical classification as prior for MMSE prediction. 
 
-The proposed approach delivers an average of 78.2\% Balanced Accuracy in MCI detection and an averaged RMSE of 2.705 in predicting MMSE. Our empirical evaluation shows that translingual language markers can improve the detection of MCI from spontaneous speech. Our codes are provided in [https://github.com/illidanlab/translingual-language-markers](https://github.com/illidanlab/translingual-language-markers).
+The proposed approach delivers an average of 78.2\% Balanced Accuracy in MCI detection and an averaged RMSE of 2.705 in predicting MMSE in a validation data split from the training data from the competition. Our empirical evaluation shows that translingual language markers can improve the detection of MCI from spontaneous speech. Our codes are provided in [https://github.com/illidanlab/translingual-language-markers](https://github.com/illidanlab/translingual-language-markers).
 
 ## Package dependencies
 Use `conda env create -f environment.yml` to create a conda env and
@@ -21,15 +21,16 @@ activate by `conda activate InterSpeech`.
 
 Data is available upon request to the TAUKADIAL Challenge Organizers. More information can be found at [https://taukadial-luzs-69e3bf4b9878b99a6f03aea43776344580b77b9fe54725f4.gitlab.io/](https://taukadial-luzs-69e3bf4b9878b99a6f03aea43776344580b77b9fe54725f4.gitlab.io/).
 
+After successfully requesting the dataset, please place the folder TAUKADIAL-24 in this repository.
 
 ### 1. Transcribe speech
-We use the Whisper Large model to transcribe speech: `python WhisperTranscribe.py --path_root ${root folder of TAUKADIAL-24 Dataset}`.
+We use the Whisper Large model to transcribe speech: `python WhisperTranscribe.py`.
 
 ### 2. Translate
 We use M2M100 model to do translation: `python WhisperTranscribe.py`.
 
 ### 3. Acoustic Feature 
-We use librosa and opensmile libraries to extract acoustic feature: `python acoustic --path_root ${root folder of TAUKADIAL-24 Dataset}`.
+We use librosa and opensmile libraries to extract acoustic feature: `python acoustic.py`.
 
 ## Demos
 Here we provide several demos of results in the paper.

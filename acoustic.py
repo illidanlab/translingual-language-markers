@@ -40,12 +40,9 @@ def extract_mfcc(path):
     M = np.vstack([mfcc, delta_mfcc, delta2_mfcc])
     return M
 
-parser = argparse.ArgumentParser()  
-parser.add_argument("--path_root", type=str, default="/localscratch2/hoangbao/TAUKADIAL-24", required=False)
-args = parser.parse_args()
-
+path_root = "TAUKADIAL-24"
 for mode in ["train", "test"]:
-    paths = sorted(glob.glob(os.path.join(args.path_root, f"{mode}/*.wav")))
+    paths = sorted(glob.glob(os.path.join(path_root, f"{mode}/*.wav")))
 
     mfcc_features = {}
     gemaps_features = {}

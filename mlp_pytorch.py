@@ -22,7 +22,6 @@ class Feature_DataSet(Dataset):
     
 
 class Proj_Model(nn.Module):
-    feature_dim = 32
     def __init__(self, in_dim, out_dim):
         super(Proj_Model, self).__init__()
         self.clf = nn.Linear(in_dim, out_dim)
@@ -40,18 +39,17 @@ def set_random_seed(seed):
     return seed
 
 class MLP:
-    use_cuda = torch.cuda.is_available()
-    device = torch.device("cuda" if use_cuda else "cpu")
-    batch_size = 32
-    lr_init = 1e-2
-    epochs = 100
-    num_workers = 0
-    penalty = "l2"
-    l_lambda = 0.1
-    
     def __init__(self, seed) -> None:
         self.seed = set_random_seed(seed)
-
+        self.use_cuda = torch.cuda.is_available()
+        self.device = torch.device("cuda" if self.use_cuda else "cpu")
+        self.batch_size = 32
+        self.lr_init = 1e-2
+        self.epochs = 100
+        self.num_workers = 0
+        self.penalty = "l2"
+        self.l_lambda = 0.1
+        
     def fit(self, X_train, Y_train, lan_detected_train):
         dataset_train = Feature_DataSet(X_train, Y_train, lan_detected_train)
         dataloader_train = DataLoader(dataset=dataset_train, batch_size = self.batch_size, num_workers = self.num_workers, drop_last = True, shuffle = True)
