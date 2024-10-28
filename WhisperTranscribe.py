@@ -26,6 +26,7 @@ for mode in ["train", "test"]:
 
     wav_name_list = list(df["tkdname"])
     pbar = tqdm(total = len(wav_name_list))
+    
     for name_wav in wav_name_list:
         path_wav = os.path.join(path_root, mode, name_wav)
 
