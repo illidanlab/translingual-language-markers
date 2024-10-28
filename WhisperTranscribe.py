@@ -12,7 +12,7 @@ use_cuda = torch.cuda.is_available()
 device = torch.device("cuda" if use_cuda else "cpu")
 whisper_model = whisper.load_model(model_id, device = device)
 
-for mode in ["test"]:
+for mode in ["train", "test"]:
     paths_wav = sorted(glob.glob(os.path.join(path_root, f"{mode}/*.wav")))
     paths_csv = os.path.join(path_root, f"{mode}/groundtruth.csv")
     
