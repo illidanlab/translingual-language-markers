@@ -27,7 +27,7 @@ After successfully requesting the dataset, please place the folder TAUKADIAL-24 
 We use the Whisper Large model to transcribe speech: `python WhisperTranscribe.py`.
 
 ### 2. Translate
-We use M2M100 model to do translation: `python WhisperTranscribe.py`.
+We use M2M100 model to do translation: `python translate.py`.
 
 ### 3. Acoustic Feature 
 We use librosa and opensmile libraries to extract acoustic feature: `python acoustic.py`.
